@@ -1,6 +1,5 @@
 import pytest
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 
 
@@ -18,7 +17,7 @@ def browser(request):
 
     # В опции вебдрайвера передаем параметр из командной строки
     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
-    #browser = webdriver.Chrome(options=options)
-    browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+    browser = webdriver.Chrome(options=options)
+    # browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     yield browser
     browser.quit()
