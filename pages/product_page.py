@@ -14,9 +14,15 @@ class ProductPage(BasePage):
         self.name_matches(self.get_selector_product("div h1"))
 
     def the_price_matches(self, name):
-        selector = "//strong[text()=\"" + name + "\"]"
-        print(selector)
-        assert self.is_element_present(By.XPATH, selector), "Wrong product name"
+        assert self.is_element_present(By.XPATH, "//strong[text()=\"" + name + "\"]"), "Wrong product name"
 
     def name_matches(self, price):
         assert self.is_element_present(By.XPATH, "//strong[text()=\"" + price + "\"]"), "Wrong product price"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocator.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def should_not_is_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocator.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
